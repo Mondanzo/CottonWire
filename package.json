@@ -1,0 +1,12 @@
+{
+  "name": "cottonwire",
+  "version": "1.0.0",
+  "description": "Yet another TechnicSolder",
+  "main": "index.js",
+  "author": "Mondanzo",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "mc-curseforge-api": "^1.0.4-d"
+  }
+}
