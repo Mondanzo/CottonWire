@@ -6,7 +6,26 @@
   "author": "Mondanzo",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "dev": "nodemon . --config .nodemon",
+    "build": "parcel build",
+    "prod": "node ."
+  },
   "dependencies": {
-    "mc-curseforge-api": "^1.0.4-d"
+    "@phil-r/stats": "^1.4.1",
+    "bcrypt": "^3.0.7",
+    "cookie-session": "^1.3.3",
+    "express": "^4.17.1",
+    "mariadb": "^2.1.4",
+    "mc-curseforge-api": "^1.0.4-d",
+    "vue": "^2.6.11",
+    "vue-hot-reload-api": "^2.3.4",
+    "vue-router": "^3.1.3"
+  },
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^3.1.0",
+    "nodemon": "^2.0.2",
+    "parcel-bundler": "^1.12.4",
+    "vue-template-compiler": "^2.6.11"
   }
 }

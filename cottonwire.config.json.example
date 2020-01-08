@@ -1,0 +1,12 @@
+{
+    "port": 5000,
+    "database": {
+        "host": "127.0.0.1",
+        "port": 3306,
+        "user": "cottonwire",
+        "password": "Your-Password-Here",
+        "database": "cottonwire"
+    },
+    "stats": true,
+    "salt": "AUTO_GENERATE",
+}
