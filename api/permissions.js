@@ -9,10 +9,10 @@ module.exports.setPerms = function (id, PERMISSIONS) {
 }
 
 module.exports.PERMISSIONS = Object.freeze({
-    "MANAGE_MODPACKS": 0,
-    "ADMINISTRATOR": 0,
-    "MANAGE_USERS": 0,
-    "MANAGE_MODS": 0,
-    "MANAGE_KEYS": 0,
-    "MANAGE_CLIENTS": 0
+    "MANAGE_MODPACKS": 1,
+    "MANAGE_USERS": 10,
+    "MANAGE_MODS": 100,
+    "MANAGE_KEYS": 1000,
+    "MANAGE_CLIENTS": 10000,
+    "ADMINISTRATOR": 11111
 })

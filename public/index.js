@@ -1,19 +1,47 @@
 import Vue from "vue";
-import App from "./App.vue";
 import Router from "vue-router";
+import VueSimpleAlert from "vue-simple-alert";
 
-let routes = [
-    { path: "/", component: () => import("./views/Dashboard.vue") }
-];
+import App from "./App.vue";
+
+import './style.pcss';
+import store from "./store";
+import routes from "./routes";
+
+import '@inkline/inkline/dist/inkline.css';
+import Inkline from '@inkline/inkline';
 
 let router = new Router({
-    routes,
-    mode: "history"
+   routes,
+   mode: "history"
 });
 
+Vue.use(Inkline);
 Vue.use(Router);
+Vue.use(VueSimpleAlert);
 
-new Vue({
+Vue.prototype.$toast = function(message, type, duration){
+   this.$fire({
+      text: message,
+      type: type ? type : "success",
+      timer: duration ? duration : 3000,
+      position: 'top-end',
+      toast: true,
+      showConfirmButton: false
+   });
+}
+
+let vue = new Vue({
     router,
+    store,
     render: ce => ce(App),
 }).$mount("#app"); 
+
+router.beforeEach((to, from, next) => {
+   vue.$store.commit("setLoading", true);
+   next();
+})
+
+router.afterEach((to, from) => {
+   vue.$store.commit("setLoading", false);
+})

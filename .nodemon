@@ -1,3 +1,3 @@
 {
-    "ignore": ["node_modules/", "dist/", "public/"]
+    "ignore": ["node_modules/", "dist/", "public/",  ".cache/"]
 }
