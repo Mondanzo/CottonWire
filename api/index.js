@@ -1,6 +1,7 @@
 const express = require("express");
 const users = require("./users");
 const modpack = require("./modpack");
+const mods = require("./mods");
 const bodyparser = require("body-parser");
 const keys = require("./keys");
 const package = require("../package.json");
@@ -22,6 +23,7 @@ router.use("/", keys.middleware);
 router.use("/", keys.router);
 router.use("/users", users);
 router.use("/modpack", modpack);
+router.use("/mods", mods);
 
 
 router.all("/*", (req, res) => {

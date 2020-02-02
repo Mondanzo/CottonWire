@@ -27,6 +27,11 @@ if(process.env.NODE_ENV !== "production"){
     bundler.bundle();
 }
 
+// Make sure mods folder exists!
+if(!fs.existsSync(path.resolve(config.modsFolder))){
+    fs.mkdirSync(path.resolve(config.modsFolder));
+}
+
 let app = express();
 
 const { statsMiddleware, getStats } = initStats({
@@ -44,6 +49,7 @@ app.use("/api", require("./api"));
 
 app.use("/", express.static("dist"));
 app.use("/cdn", express.static("assets"));
+app.use("/mods", express.static(path.resolve(config.modsFolder)));
 
 app.all("/logout", (req, res) => {
     req.session = null;
