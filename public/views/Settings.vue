@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<h1>User Profile</h1>
-		<p>Here you can change your user settings.</p>
+		<h1 class="_margin-bottom-0">User Profile</h1>
+		<p class="_margin-top-0">Here you can change your user settings.</p>
 		<h3>Change Username</h3>
 		<i-form @submit.prevent="setUsername">
 			<i-form-group>
@@ -41,15 +41,21 @@
 		<h3>2 Factor Authentication</h3>
 		<p>Enable or disable 2FA.</p>
 		<h4 class="_margin-0">WORK IN PROGRESS</h4>
-		<h1>Local Settings</h1>
-		<p>These settings are locally stored in the browser.</p>
+
+		<hr>
+		
+		<h1 class="_margin-bottom-0">Local Settings</h1>
+		<p class="_margin-top-0">These settings are locally stored in the browser.</p>
 		<h3>Theme</h3>
 		<i-radio-button-group v-model="selectedTheme">
     		<i-radio-button value="light">Light</i-radio-button>
     		<i-radio-button value="dark" class="dark" style="">Dark</i-radio-button>
 		</i-radio-button-group>
-		<h1 class="_text-danger">Danger Zone</h1>
-		<p class="_text-danger">Be careful what you press here!</p>
+
+		<hr>
+
+		<h1 class="_text-danger _margin-bottom-0">Danger Zone</h1>
+		<p class="_text-danger _margin-top-0">Be careful what you press here!</p>
 		<i-button variant="danger" @click="deleteAccount()">Delete Account</i-button>
 	</div>
 </template>

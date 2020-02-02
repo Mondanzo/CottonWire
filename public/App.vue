@@ -13,12 +13,9 @@
             <i-layout vertical>
               <Navigation></Navigation>
               <i-layout-content class="_overflow-auto" :class="{'_background-gray-90' : this.$store.state.themeDark, '_text-light' : this.$store.state.themeDark}">
-                <router-view id="currentView" class="_margin-2"></router-view>
+                <router-view id="currentView" class="_margin-2 _padding-bottom-8"></router-view>
               </i-layout-content>
             </i-layout>
-            <i-layout-footer class="_margin-bottom-4">
-              <p>CottonWire 2020 & Mondanzo</p>
-            </i-layout-footer>
         </i-layout>
         <div v-else>
             <LoginView>
