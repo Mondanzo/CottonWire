@@ -57,11 +57,25 @@ router.post("/", async function (req, res){
             "error": "slug and or display name is missing!"
         });
     }
+    if(await modpack.getModpack(req.body.slug)){
+        res.status(409).json({
+            "status": 409,
+            "error": "A modpack with that slug already exists!"
+        });
+        return;
+    }
     let okay = await modpack.createModpack({
         "name": req.body.slug,
         "display_name": req.body.display_name
     });
-    res.status(okay ? 200 : 500).json(okay);
+    if(okay){
+        res.status(200).json(true)
+    } else {
+        res.status(500).json({
+            "status": 500,
+            "error": "An error occured while trying to add the modpack!"
+        });
+    }
 })
 
 module.exports = router;
