@@ -4,7 +4,6 @@ import VueSimpleAlert from "vue-simple-alert";
 
 import App from "./App.vue";
 
-import './style.pcss';
 import store from "./store";
 import routes from "./routes";
 
@@ -45,3 +44,9 @@ router.beforeEach((to, from, next) => {
 router.afterEach((to, from) => {
    vue.$store.commit("setLoading", false);
 })
+
+Vue.config.errorHandler = function(err, vm, info){
+   vm.$alert(err, "Error in " + info, "error", {
+      backdrop: "#111"
+   })
+}

@@ -123,9 +123,16 @@ router.put("/", async function(req, res){
     }
 });
 
-router.get("/verify", function(req, res) {
+router.get("/verify", async function(req, res) {
     if(req.session.hasOwnProperty("authenticated") && req.session.authenticated){
-        res.status(200).json(req.session.user);
+        let u = await users.getUser(req.session.user.id);
+        if(u){
+            req.session.user = u;
+            res.status(200).json(req.session.user);
+        } else {
+            req.session = null;
+            res.status(301).send();
+        }
     } else {
         res.status(301).send();
     }
@@ -153,7 +160,7 @@ router.post("/login", async function(req, res) {
                 if(verified){
                     if (req.body.hasOwnProperty("rememberMe") && req.body.rememberMe) {
                         console.log("U gotta stay logged in for a looong time")
-                        req.sessionOptions.maxAge = new Date("Fri, 31 Dec 9999 23:59:59 GMT");
+                        req.sessionOptions.maxAge = new Date("Fri, 31 Dec 9999 23:59:59 GMT") - Date.now().toFixed();
                     }
                     req.session.authenticated = true;
                     req.session.user = {
@@ -181,7 +188,7 @@ router.post("/login", async function(req, res) {
         } else {
             if (req.body.hasOwnProperty("rememberMe") && req.body.rememberMe) {
                 console.log("U gotta stay logged in for a looong time")
-                req.sessionOptions.maxAge = new Date("Fri, 31 Dec 9999 23:59:59 GMT");
+                req.sessionOptions.maxAge = new Date("Fri, 31 Dec 9999 23:59:59 GMT") - Date.now().toFixed();
             }
             req.session.authenticated = true;
             req.session.user = {

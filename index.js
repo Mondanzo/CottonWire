@@ -42,8 +42,15 @@ const { statsMiddleware, getStats } = initStats({
 
 app.use(statsMiddleware);
 app.use(session({
+    name: "cwss",
     secret: config.salt
 }));
+
+
+app.use(function (req, res, next) {
+    req.sessionOptions.maxAge = req.session.maxAge || req.sessionOptions.maxAge;
+    next();
+})
 
 app.use("/api", require("./api"));
 

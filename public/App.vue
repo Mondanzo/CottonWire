@@ -72,6 +72,11 @@ body {
   height: 100vh;
   width: 100vw;
 }
+
+.swal2-container {
+  z-index: 2001 !important;
+}
+
 .loading {
     opacity: 0;
     pointer-events: none;

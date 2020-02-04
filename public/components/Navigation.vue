@@ -29,6 +29,7 @@
            <div class="footer_content _margin-x-1">
             <p>CottonWire &copy; Mondanzo 2020</p>
             <a href="https://github.com/Mondanzo/CottonWire">Github</a>
+            <a href="https://twitter.com/Mondanzo">Twitter</a>
            </div>
        </i-sidebar>
     </i-layout-aside>
