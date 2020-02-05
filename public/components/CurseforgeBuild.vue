@@ -29,3 +29,72 @@
 		</i-row>
 	</i-container>
 </template>
+
+<script>
+
+export default {
+	components: {FormWizard, TabContent, CurseforgeSearch},
+	data(){
+		return {
+			mods: [],
+			modMenu: {
+				slug: "",
+				name: "",
+				author: "",
+				description: "",
+				link: "",
+				donate: "",
+				type: "MOD",
+				side: ["CLIENT", "SERVER"]
+			},
+			modals: {
+				curseforge: false,
+				generic: false
+			},
+			cfMod: null,
+			cfBuilds: [],
+			cfSelectedBuild: null,
+			cfFilter: null,
+			cfAvailabledVersions: []
+		}
+	},
+	computed: {
+		filteredBuilds(){
+			if(this.cfFilter !== null)
+				return this.cfBuilds.filter(build => build.minecraft_versions.includes(this.cfFilter))
+			else
+				return this.cfBuilds;
+		}
+	},
+	methods: {
+		addCurseMod(mod){
+			this.modMenu.slug = mod.key;
+			this.modMenu.name = mod.name;
+			this.modMenu.author = mod.owner;
+			this.modMenu.description = mod.blurb;
+			this.modMenu.link = mod.url;
+			this.modMenu.type = "MOD";
+			this.modMenu.side = ["CLIENT", "SERVER"];
+			this.modals.curseforge = false;
+			this.modals.generic = true;
+			setTimeout(this.$refs.cfSearch.clear, 500);
+		},
+		setSelectedMod(mod){
+			curseforge.getModFiles(mod.id).then((files) => {
+				this.cfBuilds = files;
+				this.cfAvailabledVersions = [];
+				for(let b of this.cfBuilds){
+					for(let ver of b.minecraft_versions)
+						if(ver.startsWith("1") && !this.cfAvailabledVersions.includes(ver))
+							this.cfAvailabledVersions.push(ver);
+				}
+				this.cfMod = mod;
+				this.$refs.curseforgeWizard.nextTab();
+				})
+		},
+		setSelectedBuild(build){
+			this.cfSelectedBuild = build;
+		}
+	}
+}
+</script>

@@ -21,7 +21,13 @@ module.exports = [
 	},
 	{
 		path: "/mods",
-		component: () => import("./views/Mods.vue")
+		component: () => import("./views/Mods.vue"),
+		children: [
+			{
+				path: ":mod",
+				component: () => import("./views/Mods.vue")
+			}
+		]
 	},
 	{ path: "/settings", component: () => import("./views/Settings.vue") }
 ];

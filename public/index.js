@@ -15,6 +15,12 @@ let router = new Router({
    mode: "history"
 });
 
+const originalPush = Router.prototype.push;
+Router.prototype.push = function push(location) {
+   return originalPush.call(this, location).catch(err => err);
+}
+
+
 Vue.use(Inkline);
 Vue.use(Router);
 Vue.use(VueSimpleAlert);
@@ -46,6 +52,7 @@ router.afterEach((to, from) => {
 })
 
 Vue.config.errorHandler = function(err, vm, info){
+   console.error(err);
    vm.$alert(err, "Error in " + info, "error", {
       backdrop: "#111"
    })
